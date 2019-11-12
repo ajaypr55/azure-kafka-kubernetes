@@ -5,10 +5,10 @@ echo "Running script to create Kafka on Kubernetes cluster"
 export CLUSTER_NAME="kafka-k8-cluster-helm"
 export RG_NAME="kafka-k8"
 export LOCATION="westus2"
-export NODE_SIZE="Standard_DS5_v2"
-export NODE_COUNT="3"
+#export NODE_SIZE="Standard_DS5_v2"
+#export NODE_COUNT="3"
 
-. ../utils/aks_setup.sh
+#. ../utils/aks_setup.sh
 
 export KAFKA_IP_NAME_0="kafka-ip-0"
 export KAFKA_IP_NAME_1="kafka-ip-1"
@@ -25,6 +25,11 @@ az network public-ip create -g "$CLUSTER_RG" -n $KAFKA_IP_NAME_2 --allocation-me
 KAFKA_IP_0="$(az network public-ip show --resource-group "$CLUSTER_RG" --name $KAFKA_IP_NAME_0 --query ipAddress)"
 KAFKA_IP_1="$(az network public-ip show --resource-group "$CLUSTER_RG" --name $KAFKA_IP_NAME_1 --query ipAddress)"
 KAFKA_IP_2="$(az network public-ip show --resource-group "$CLUSTER_RG" --name $KAFKA_IP_NAME_2 --query ipAddress)"
+
+echo $KAFKA_IP_0
+echo $KAFKA_IP_1
+echo $KAFKA_IP_2
+
 
 echo "adding kafkaClient.yaml"
 
